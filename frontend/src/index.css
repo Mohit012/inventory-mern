@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap');
+@import "tailwindcss";
+
+/* Define theme colors using CSS variables */
+:root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+
+  /* Primary Palette */
+  --primary-color: #3B82F6; /* Blue 500 */
+  --primary-color-hover: #1E40AF; /* Blue 700 (for hover states) */
+
+  /* Accent Colors */
+  --accent-success: #10B981; /* Emerald 500 */
+  --accent-warning: #F59E0B; /* Amber 500 */
+  --accent-danger: #EF4444; /* Red 500 (using a standard red for errors) */
+  
+  /* Neutral Colors */
+  --neutral-bg-main: #FFFFFF; /* White */
+  --neutral-bg-card: #FFFFFF; /* White */
+  --neutral-bg-card-alt: #F9FAFB; /* Gray 50 */
+  
+  --neutral-text-primary: #1E3A8A; /* Dark Blue (e.g., Tailwind Blue 800) */
+  --neutral-text-secondary: #4B5563; /* Dark Gray (e.g., Tailwind Gray 600) */
+  
+  --neutral-border: #93C5FD; /* Blue 300 */
+  --neutral-border-light: #BFDBFE; /* Blue 200 */
+
+  /* Scrollbar (can be refined further) */
+  --scrollbar-track: #E5E7EB; /* Gray 200 */
+  --scrollbar-thumb: #9CA3AF; /* Gray 400 */
+  --scrollbar-thumb-hover: #6B7280; /* Gray 500 */
+
+  /* Legacy (to be phased out or remapped) */
+  --primary-bg: var(--neutral-bg-main); /* Remapped */
+  --accent: var(--primary-color); /* Remapped */
+  --accent-hover: var(--primary-color-hover); /* Remapped */
+  --input-border: var(--neutral-border); /* Remapped */
+  --error-color: var(--accent-danger); /* Remapped */
+  --text-color: var(--neutral-text-primary); /* Remapped */
+}
+
+/* Global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base body styling */
+body {
+  background-color: var(--neutral-bg-main);
+  font-family: 'Inter', 'Nunito Sans', sans-serif;
+  color: var(--neutral-text-primary);
+  line-height: 1.6;
+  padding: 1rem; /* Consider if this global padding is still desired or handled by layout components */
+}
+
+/* Input fields with focus effect */
+.input-field {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--neutral-border);
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  transition: border-color 0.3s ease;
+  outline: none;
+  background-color: var(--neutral-bg-card);
+  color: var(--neutral-text-primary);
+}
+.input-field:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); /* Optional focus ring */
+}
+.input-field-error {
+  border-color: var(--accent-danger);
+}
+.input-field-error:focus {
+  border-color: var(--accent-danger);
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2); /* Optional focus ring for error */
+}
+
+
+/* Menu item adjustments */
+li.ant-menu-item {
+  padding: 0 0.8rem; /* Keep for now, AntD overrides might be complex */
+}
+
+/* Label styling */
+.label {
+  font-size: 0.875rem; /* Slightly smaller for a cleaner look */
+  font-weight: 500; /* Medium weight */
+  color: var(--neutral-text-secondary);
+  margin-bottom: 0.375rem; /* 6px */
+  display: block;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Custom table design */
+.custom-table {
+  width: 100%;
+  font-size: 0.875rem; /* 14px */
+  text-align: left; /* Common practice for tables */
+  border-collapse: separate; /* Allows for border-radius on table */
+  border-spacing: 0;
+  border: 1px solid var(--neutral-border-light);
+  border-radius: 8px; /* Rounded corners for the table */
+  background-color: var(--neutral-bg-card);
+  overflow: hidden; /* To make border-radius work with th */
+}
+.custom-table th {
+  background-color: var(--neutral-bg-card-alt); /* Gray 50 */
+  padding: 0.75rem 1rem; /* 12px 16px */
+  font-weight: 600; /* SemiBold */
+  color: var(--neutral-text-primary);
+  border-bottom: 1px solid var(--neutral-border-light);
+  text-align: left;
+}
+.custom-table td {
+  padding: 0.75rem 1rem; /* 12px 16px */
+  border-bottom: 1px solid var(--neutral-border-light);
+  color: var(--neutral-text-secondary);
+}
+.custom-table tbody tr:last-child td {
+  border-bottom: none; /* Remove border from last row */
+}
+.custom-table tbody tr:nth-child(even) {
+  background-color: var(--neutral-bg-card); /* No striping or very subtle if needed */
+}
+.custom-table tbody tr:hover {
+  background-color: var(--neutral-bg-main); /* Gray 100 for hover */
+}
+
+/* Query filter adjustments */
+.query-filter {
+  width: 100%; /* Make it full width for better responsiveness */
+  max-width: 400px; /* Optional: constrain max width */
+  margin-bottom: 1.5rem; /* Increased margin */
+}
+.query-filter label { /* Will be handled by .label class or AntD's own label styling */
+  font-weight: 600; /* SemiBold */
+  color: var(--neutral-text-secondary);
+}
+
+/* Sales section styling with subtle shadow */
+.sales { /* This class might be too generic, consider renaming or scoping */
+  padding: 1.5rem; /* Increased padding */
+  margin: 1rem 0; /* Adjusted margin */
+  border: 1px solid var(--neutral-border-light);
+  border-radius: 8px; /* Consistent border-radius */
+  background: var(--neutral-bg-card);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* Softer shadow */
+  overflow: auto;
+}
+
+/* Number card design */
+.number-card {
+  width: 100%;
+  margin: 0.5rem 0; /* Adjusted margin */
+  min-height: 120px; /* Slightly reduced height */
+  border: 1px solid var(--neutral-border-light);
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--neutral-bg-card);
+  padding: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.number-card h3 { /* Title for the number card */
+  font-size: 0.875rem; /* 14px */
+  font-weight: 500; /* Medium */
+  color: var(--neutral-text-secondary);
+  margin-bottom: 0.25rem; /* 4px */
+}
+.number-card h1 { /* The actual number */
+  font-size: 2rem; /* 32px */
+  font-weight: 700; /* Bold */
+  color: var(--neutral-text-primary);
+  margin: 0;
+}
+
+/* Modal styling for updating sales */
+.update-sale-modal { /* This seems to be a wrapper, AntD modal styles will apply to the modal itself */
+  border: 1px solid var(--neutral-border-light);
+  padding: 2rem;
+  border-radius: 8px;
+  background: var(--neutral-bg-card);
+}
+
+/* Bulk delete button design */
+.bulk-delete-btn {
+  padding: 0.5rem 1rem; /* 8px 16px */
+  height: auto; /* Let padding define height */
+  background-color: var(--accent-danger);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500; /* Medium */
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+.bulk-delete-btn:hover {
+  background-color: #D92D20; /* Darker Red 600 for hover */
+}
+.bulk-delete-btn:disabled {
+  background-color: var(--neutral-border); /* Gray 300 */
+  color: var(--neutral-text-secondary); /* Gray 500 */
+  cursor: not-allowed;
+}
+
+/* Button styling for table actions */
+.table-btn-small { /* Often better to use AntD IconButtons or small buttons */
+  width: 32px; /* Consistent size */
+  height: 32px;
+  border-radius: 6px;
+  border: 1px solid var(--neutral-border);
+  background-color: var(--neutral-bg-card);
+  color: var(--neutral-text-secondary);
+  margin-right: 0.25rem; /* 4px */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.table-btn-small:hover {
+  background-color: var(--neutral-bg-main);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.table-btn { /* General purpose action button, could be AntD button with type="primary" or "default" */
+  border-radius: 6px;
+  height: auto; /* Let padding define height */
+  padding: 0.375rem 0.75rem; /* 6px 12px */
+  margin-right: 0.25rem;
+  font-weight: 500; /* Medium */
+  border: 1px solid transparent;
+  background-color: var(--primary-color);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.table-btn:hover {
+  background-color: var(--primary-color-hover);
+}
